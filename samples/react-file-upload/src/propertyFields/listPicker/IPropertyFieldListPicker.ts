@@ -26,7 +26,7 @@ export interface IPropertyFieldListPickerProps {
    */
   selectedList?: string | string[];
   /**
-   * BaseTemplate ID of the lists or libaries you want to return.
+   * BaseTemplate ID of the lists or libraries you want to return.
    */
   baseTemplate?: number;
   /**
@@ -38,7 +38,7 @@ export interface IPropertyFieldListPickerProps {
    */
   orderBy?: PropertyFieldListPickerOrderBy;
   /**
-   * Specify if you want to have a single or mult list selector.
+   * Specify if you want to have a single or multi list selector.
    */
   multiSelect?: boolean;
   /**
@@ -83,7 +83,7 @@ export interface IPropertyFieldListPickerProps {
 /**
  * Private properties of the PropertyFieldListPicker custom field.
  * We separate public & private properties to include onRender & onDispose method waited
- * by the PropertyFieldCustom, witout asking to the developer to add it when he's using
+ * by the PropertyFieldCustom, without asking to the developer to add it when he's using
  * the PropertyFieldListPicker.
  *
  */

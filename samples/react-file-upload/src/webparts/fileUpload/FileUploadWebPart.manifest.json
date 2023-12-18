@@ -14,7 +14,7 @@
     "officeFabricIconFontName": "OpenFile",
     "properties": {
       "listName": "Documents",
-      "fileTypes":"jpg,png,gif,avi,mp4",
+      "fileTypes":"docx,xlsx,pptx,zip,jpg,png,gif,avi,mp4",
       "uploadFilesTo":"DocumentLibrary"
     }
   }]

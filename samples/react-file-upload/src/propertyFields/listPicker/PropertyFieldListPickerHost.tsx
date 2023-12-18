@@ -146,7 +146,7 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
     if (this.props.onPropertyChange && propValue !== null) {
       // Store the new property value
       this.props.properties[this.props.targetProperty] = propValue;
-      // Trigger the default onPrpertyChange event
+      // Trigger the default onPropertyChange event
       this.props.onPropertyChange(this.props.targetProperty, oldValue, propValue);
       // Trigger the apply button
       if (typeof this.props.onChange !== 'undefined' && this.props.onChange !== null) {

@@ -1,13 +1,11 @@
 import * as React from 'react';
-
 /**
  * Enum to describe possible events to show callout
  */
-export enum CalloutTriggers {
+export declare enum CalloutTriggers {
     Click = 1,
-    Hover
+    Hover = 2
 }
-
 /**
  * Interface that describes available settings of Header callout
  */
@@ -29,7 +27,6 @@ export interface IPropertyFieldHeaderCalloutProps {
      */
     gapSpace?: number;
 }
-
 /**
  * PropertyFieldHeader component props
  */
@@ -39,7 +36,6 @@ export interface IPropertyFieldHeaderProps extends IPropertyFieldHeaderCalloutPr
      */
     label?: string;
 }
-
 /**
  * PropertyFieldHeader component state
  */
