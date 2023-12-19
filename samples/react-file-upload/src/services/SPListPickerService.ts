@@ -29,7 +29,8 @@ export default class SPListPickerService {
     if (Environment.type === EnvironmentType.Local) {
       // If the running environment is local, load the data from the mock
       return this.getLibsFromMock();
-    } else {
+    }
+    else {
       // If the running environment is SharePoint, request the lists REST service
       let queryUrl: string = `${this.context.pageContext.web.absoluteUrl}/_api/lists?$select=Title,id,BaseTemplate`;
       // Check if the orderBy property is provided
@@ -70,11 +71,11 @@ export default class SPListPickerService {
     return SPListPickerMockHttpClient.getLists(this.context.pageContext.web.absoluteUrl).then(() => {
       const listData: ISPLists = {
         value:
-          [
-            { Title: 'Mock List One', Id: '6770c83b-29e8-494b-87b6-468a2066bcc6', BaseTemplate: '109' },
-            { Title: 'Mock List Two', Id: '2ece98f2-cc5e-48ff-8145-badf5009754c', BaseTemplate: '109' },
-            { Title: 'Mock List Three', Id: 'bd5dbd33-0e8d-4e12-b289-b276e5ef79c2', BaseTemplate: '109' }
-          ]
+        [
+          { Title: 'Mock List One', Id: '6770c83b-29e8-494b-87b6-468a2066bcc6', BaseTemplate: '109' },
+          { Title: 'Mock List Two', Id: '2ece98f2-cc5e-48ff-8145-badf5009754c', BaseTemplate: '109' },
+          { Title: 'Mock List Three', Id: 'bd5dbd33-0e8d-4e12-b289-b276e5ef79c2', BaseTemplate: '109' }
+        ]
       };
       return listData;
     }) as Promise<ISPLists>;
