@@ -9,7 +9,7 @@ export enum CalloutTriggers {
 }
 
 /**
- * Interface that discibes available settings of Header callout
+ * Interface that describes available settings of Header callout
  */
 export interface IPropertyFieldHeaderCalloutProps {
     /**

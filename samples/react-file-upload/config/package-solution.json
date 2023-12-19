@@ -1,11 +1,38 @@
 {
-  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "SPFileUpload-client-side-solution",
+    "name": "SPFx File Upload WebPart",
     "id": "297016d1-8144-431f-87e5-fe5272d0a226",
-    "version": "1.0.0.0",
+    "version": "1.0.1.2",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": true
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "TheExecTechs",
+      "privacyUrl": "https://theexectechs.com/privacy",
+      "termsOfUseUrl": "",
+      "websiteUrl": "https://theexectechs.com",
+      "mpnId": "6321665"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Upload Files to SharePoint List or Library"
+      },
+      "longDescription": {
+        "default": "Upload files to a Document Library or List"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "SPFx Upload Files WebPart Feature",
+        "description": "The feature that activates FileUploadWebPart from the 'File Upload WebPart Solution' solution.",
+        "id": "786e7cdf-d1c8-4412-8abb-1aa18ea555e0",
+        "version": "1.0.1.2"
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/SPFileUpload.sppkg"

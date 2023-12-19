@@ -1,9 +1,9 @@
 import {
-  IWebPartContext
+  WebPartContext
 } from '@microsoft/sp-webpart-base';
 export interface IFileUploadProps {
   digest:string;
-  context:IWebPartContext;
+  context:WebPartContext;
   listName:string;
   fileTypes:string;
   queryString:string;

@@ -1,10 +1,10 @@
 /* tslint:disable */
-require('./PropertyFieldHeader.module.css');
+require("./PropertyFieldHeader.module.css");
 const styles = {
-  headerBar: 'headerBar_de667ef4',
-  header: 'header_de667ef4',
-  info: 'info_de667ef4',
-  headerCallout: 'headerCallout_de667ef4',
+  headerBar: 'headerBar_63b3e732',
+  header: 'header_63b3e732',
+  info: 'info_63b3e732',
+  headerCallout: 'headerCallout_63b3e732'
 };
 
 export default styles;

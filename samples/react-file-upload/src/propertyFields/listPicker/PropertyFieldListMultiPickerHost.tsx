@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Label } from 'office-ui-fabric-react/lib/Label';
-import { IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
-import { Spinner, SpinnerType } from 'office-ui-fabric-react/lib/Spinner';
-import { Async } from 'office-ui-fabric-react/lib/Utilities';
-import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
+import { Label } from '@fluentui/react/lib/Label';
+import { IChoiceGroupOption } from '@fluentui/react/lib/ChoiceGroup';
+import { Spinner, SpinnerType } from '@fluentui/react/lib/Spinner';
+import { Async } from '@fluentui/react/lib/Utilities';
+import { Checkbox } from '@fluentui/react/lib/Checkbox';
 import { IPropertyFieldListMultiPickerHostProps, IPropertyFieldListMultiPickerHostState } from './IPropertyFieldListMultiPickerHost';
 import { ISPLists, ISPList } from './IPropertyFieldListPickerHost';
 import SPListPickerService from '../../services/SPListPickerService';
@@ -49,7 +49,6 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
     // Gets the libs
     listService.getLibs().then((response: ISPLists) => {
       response.value.map((list: ISPList) => {
-        let isSelected: boolean = false;
         let indexInExisting: number = -1;
         // Defines if the current list must be selected by default
         if (this.props.selectedLists) {
@@ -57,14 +56,12 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
         }
 
         if (indexInExisting > -1) {
-          isSelected = true;
           this.state.selectedKeys.push(list.Id);
         }
         // Add the option to the list
         this.options.push({
           key: list.Id,
-          text: list.Title,
-          checked: isSelected
+          text: list.Title
         });
       });
       this.loaded = true;
@@ -178,7 +175,6 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
               return (
                 <div style={{ marginBottom: '5px' }} className='ms-ChoiceField' key={`${this.props.key}-multiplelistpicker-${index}`}>
                   <Checkbox
-                    defaultChecked={item.checked}
                     disabled={this.props.disabled}
                     label={item.text}
                     onChange={this.onChanged}

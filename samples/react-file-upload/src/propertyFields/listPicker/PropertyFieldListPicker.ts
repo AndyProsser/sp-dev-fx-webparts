@@ -1,10 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import {
-  IPropertyPaneField,
-  PropertyPaneFieldType,
-  IWebPartContext
-} from '@microsoft/sp-webpart-base';
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+import { IPropertyPaneField, PropertyPaneFieldType } from "@microsoft/sp-property-pane";
 import PropertyFieldListPickerHost from './PropertyFieldListPickerHost';
 import PropertyFieldListMultiPickerHost from './PropertyFieldListMultiPickerHost';
 import { IPropertyFieldListPickerHostProps } from './IPropertyFieldListPickerHost';
@@ -23,7 +20,7 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
 
   //Custom properties label: string;
   private label: string;
-  private context: IWebPartContext;
+  private context: WebPartContext;
   private selectedList: string;
   private selectedLists: string[];
   private baseTemplate: number;
@@ -113,7 +110,7 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
    * Disposes the current object
    */
   private dispose(elem: HTMLElement): void {
-
+    // 
   }
 
 }
