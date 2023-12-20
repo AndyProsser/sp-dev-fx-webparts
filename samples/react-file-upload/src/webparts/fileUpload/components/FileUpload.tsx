@@ -76,12 +76,23 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
       headers: {
         "X-RequestDigest": this.props.digest
       },
-      addRemoveLinks: true
+      addRemoveLinks: true,
+      acceptedFiles: this.acceptedFilesTypes(this.props.fileTypes),
     };
     return (
       <DropzoneComponent eventHandlers={eventHandlers} djsConfig={djsConfig} config={componentConfig}>
         <div className="dz-message icon ion-upload">Drop files here or click to upload.</div>
       </DropzoneComponent>
     );
+  }
+
+  private acceptedFilesTypes(fileTypes: string): string {
+    const acceptedFiles = fileTypes.split(',');
+    for (let i = 0; i < acceptedFiles.length; i++) {
+      if (acceptedFiles[i].lastIndexOf('.', 0) === -1) {
+        acceptedFiles[i] = `.${acceptedFiles[i]}`;
+      }
+    }
+    return acceptedFiles.join(',');
   }
 }

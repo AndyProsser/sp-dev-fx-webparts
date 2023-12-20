@@ -75,8 +75,10 @@ export default class FileUploadWebPart extends BaseClientSideWebPart<IFileUpload
               groupFields: [
                 PropertyPaneDropdown('uploadFilesTo', {
                   label: 'Upload files to',
-                  options: [{ key: 'DocumentLibrary', text: 'Document Library' },
-                  { key: 'List', text: 'As item attachments' }]
+                  options: [
+                    { key: 'DocumentLibrary', text: 'Document Library' },
+                    { key: 'List', text: 'As item attachments' }
+                  ]
                 }),
                 PropertyFieldListPicker('listName', {
                   label: 'Select a list or library',
