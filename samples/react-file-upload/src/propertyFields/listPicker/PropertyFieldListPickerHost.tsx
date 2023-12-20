@@ -48,7 +48,7 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
    */
   private loadLists(): void {
     const listService: SPListPickerService = new SPListPickerService(this.props, this.props.context);
-    listService.getLibs().then((response: ISPLists) => {
+    listService.getLibs().then((response: ISPLists): void => {
       // Start mapping the list that are selected
       response.value.map((list: ISPList) => {
         if (this.props.selectedList === list.Id) {
@@ -71,6 +71,8 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
         results: this.options,
         selectedKey: this.selectedKey
       });
+    }).catch(() => {
+      // handle error
     });
   }
 
@@ -107,7 +109,8 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
           errorMessage: result
         });
       } else {
-        result.then((errorMessage: string) => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        result.then((errorMessage: string): void => {
           if (typeof errorMessage === 'undefined' || errorMessage === '') {
             this.notifyAfterValidate(this.props.selectedList, value);
           }
@@ -124,7 +127,7 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
   /**
    * Notifies the parent Web Part of a property value change
    */
-  private notifyAfterValidate(oldValue: string, newValue: string) {
+  private notifyAfterValidate(oldValue: string, newValue: string): void {
     // Check if the user wanted to unselect the list
     const propValue = newValue === EMPTY_LIST_KEY ? '' : newValue;
 
@@ -158,7 +161,7 @@ export default class PropertyFieldListPickerHost extends React.Component<IProper
   /**
    * Called when the component will unmount
    */
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     if (typeof this.async !== 'undefined') {
       this.async.dispose();
     }

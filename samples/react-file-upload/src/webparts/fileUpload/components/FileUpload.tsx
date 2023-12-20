@@ -16,6 +16,7 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
     const _queryStringParam = this.props.queryString;
     const queryParameters = new UrlQueryParameterCollection(window.location.href);
     const _itemId = queryParameters.getValue(_queryStringParam);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const _parent = this;
     const componentConfig = {
       iconFiletypes: this.props.fileTypes.split(','),
@@ -32,19 +33,24 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
       },
       removedfile: function (file: { name: string; }) {
         const web: Web = new Web(_context.pageContext.web.absoluteUrl);
-        if (_fileUploadTo == "DocumentLibrary") {
-          web.lists.getById(_listName).rootFolder.files.getByName(file.name).delete().then(t => {
+        if (_fileUploadTo === "DocumentLibrary") {
+          // tslint:disable-next-line:no-unsafe-any
+          web.lists.getById(_listName).rootFolder.files.getByName(file.name).delete().then((t): void => {
             //add your code here if you want to do more after deleting the file
+          }).catch(error => {
+            //handle your error here
           });
         }
         else {
-          web.lists.getById(_listName).items.getById(Number(_itemId)).attachmentFiles.deleteMultiple(file.name).then(t => {
+          web.lists.getById(_listName).items.getById(Number(_itemId)).attachmentFiles.deleteMultiple(file.name).then((t): void => {
             //add your code here if you want to do more after deleting the file
+          }).catch(error => {
+            //handle your error here
           });
         }
       },
       processing: function (file: { name: any; }) {
-        if (_fileUploadTo == "DocumentLibrary")
+        if (_fileUploadTo === "DocumentLibrary")
           myDropzone.options.url = `${_context.pageContext.web.absoluteUrl}/_api/web/Lists/getById('${_parent.props.listName}')/rootfolder/files/add(overwrite=true,url='${file.name}')`;
         else {
           if (_itemId)
@@ -60,7 +66,7 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
         };
       },
       error: function (file: { name: any; }, error: any) {
-        if (_fileUploadTo != "DocumentLibrary")
+        if (_fileUploadTo !== "DocumentLibrary")
           alert(`File '${file.name}' is already exists, please rename your file or select another file.`);
         //if(myDropzone)
         //  myDropzone.removeFile(file);

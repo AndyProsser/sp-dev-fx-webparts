@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IconButton, Callout, DirectionalHint } from '@fluentui/react';
+import { Callout, DirectionalHint } from '@fluentui/react';
 import { IPropertyFieldHeaderProps, IPropertyFieldHeaderState, CalloutTriggers } from './IPropertyFieldHeader';
 
 import styles from './PropertyFieldHeader.module.scss';
@@ -30,7 +30,7 @@ export default class PropertyFieldHeader extends React.Component<IPropertyFieldH
                     <i className={'ms-Icon ms-Icon--Info'} ref={(infoIcon) => { this._infoIcon = infoIcon; }}
                         onMouseOver={this.props.calloutTrigger === CalloutTriggers.Hover ? this._onInfoIconMouseOver.bind(this) : null}
                         onMouseOut={this.props.calloutTrigger === CalloutTriggers.Hover ? this._onInfoIconMouseOut.bind(this) : null}
-                        onClick={this.props.calloutTrigger === CalloutTriggers.Click ? this._onInfoIconClick.bind(this) : null}></i>
+                        onClick={this.props.calloutTrigger === CalloutTriggers.Click ? this._onInfoIconClick.bind(this) : null} />
                 </div>
                 {this.state.isCalloutVisible && (
                     <Callout
@@ -50,7 +50,7 @@ export default class PropertyFieldHeader extends React.Component<IPropertyFieldH
     }
 
 
-    private _onCalloutDismiss() {
+    private _onCalloutDismiss(): void {
         if (this.state.isCalloutVisible) {
             this.setState({
                 isCalloutVisible: false

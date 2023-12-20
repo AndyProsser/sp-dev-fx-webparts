@@ -28,7 +28,9 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
   private multiSelect: boolean;
   private includeHidden: boolean;
 
-  public onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void { }
+  public onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void {
+    // 
+  }
   private customProperties: any;
   private key: string;
   private disabled: boolean = false;
@@ -78,6 +80,8 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
       baseTemplate: this.baseTemplate,
       orderBy: this.orderBy,
       multiSelect: this.multiSelect,
+      selectedList: null,
+      selectedLists: null,
       includeHidden: this.includeHidden,
       onDispose: this.dispose,
       onRender: this.render,
@@ -91,26 +95,25 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
     };
 
     // Check if the multi or single select component has to get loaded
+    let element: React.ReactElement;
     if (this.multiSelect) {
       // Multi selector
-      componentProps['selectedLists'] = this.selectedLists;
-      const element: React.ReactElement<IPropertyFieldListMultiPickerHostProps> = React.createElement(PropertyFieldListMultiPickerHost, componentProps);
-      // Calls the REACT content generator
-      ReactDom.render(element, elem);
+      componentProps.selectedLists = this.selectedLists;
+      element = React.createElement(PropertyFieldListMultiPickerHost, componentProps);
     } else {
       // Single selector
-      componentProps['selectedList'] = this.selectedList;
-      const element: React.ReactElement<IPropertyFieldListPickerHostProps> = React.createElement(PropertyFieldListPickerHost, componentProps);
-      // Calls the REACT content generator
-      ReactDom.render(element, elem);
+      componentProps.selectedList = this.selectedList;
+      element = React.createElement(PropertyFieldListPickerHost, componentProps);
     }
+    // Calls the REACT content generator
+    ReactDom.render(element, elem);
   }
 
   /**
    * Disposes the current object
    */
   private dispose(elem: HTMLElement): void {
-    // 
+    ReactDom.unmountComponentAtNode(elem);
   }
 
 }

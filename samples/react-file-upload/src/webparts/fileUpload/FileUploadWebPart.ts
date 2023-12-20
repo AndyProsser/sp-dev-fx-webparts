@@ -28,11 +28,14 @@ export default class FileUploadWebPart extends BaseClientSideWebPart<IFileUpload
   protected onInit(): Promise<void> {
     return new Promise<void>((resolve: () => void, reject: (error: any) => void): void => {
       const digestCache: IDigestCache = this.context.serviceScope.consume(DigestCache.serviceKey);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       digestCache.fetchDigest(this.context.pageContext.web.serverRelativeUrl).then((digest: string): void => {
         // use the digest here
         this.digest = digest;
         resolve();
       });
+    }).catch(() => {
+      // handel error
     });
   }
   public render(): void {
@@ -49,6 +52,10 @@ export default class FileUploadWebPart extends BaseClientSideWebPart<IFileUpload
     );
 
     ReactDom.render(element, this.domElement);
+  }
+
+  protected onDispose(): void {
+    ReactDom.unmountComponentAtNode(this.domElement);
   }
 
   protected get dataVersion(): Version {

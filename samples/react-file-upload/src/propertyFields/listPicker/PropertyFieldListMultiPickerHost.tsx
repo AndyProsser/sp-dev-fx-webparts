@@ -47,7 +47,8 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
     // Builds the SharePoint List service
     const listService: SPListPickerService = new SPListPickerService(this.props, this.props.context);
     // Gets the libs
-    listService.getLibs().then((response: ISPLists) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    listService.getLibs().then((response: ISPLists): void => {
       response.value.map((list: ISPList) => {
         let indexInExisting: number = -1;
         // Defines if the current list must be selected by default
@@ -84,7 +85,7 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
         // Add the selected item and filter out the doubles
         selectedKeys.push(value);
         selectedKeys = selectedKeys.filter((item, pos, self) => {
-          return self.indexOf(item) == pos;
+          return self.indexOf(item) === pos;
         });
       }
       // Update the state and validate
@@ -114,6 +115,7 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
           errorMessage: result
         });
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         result.then((errorMessage: string) => {
           if (typeof errorMessage === 'undefined' || errorMessage === '') {
             this.notifyAfterValidate(this.props.selectedLists, value);
@@ -131,7 +133,7 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
   /**
   * Notifies the parent Web Part of a property value change
   */
-  private notifyAfterValidate(oldValue: string[], newValue: string[]) {
+  private notifyAfterValidate(oldValue: string[], newValue: string[]): void {
     if (this.props.onPropertyChange && newValue !== null) {
       this.props.properties[this.props.targetProperty] = newValue;
       this.props.onPropertyChange(this.props.targetProperty, oldValue, newValue);
@@ -145,7 +147,7 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
   /**
   * Called when the component will unmount
   */
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     this.async.dispose();
   }
 
@@ -175,6 +177,7 @@ export default class PropertyFieldListMultiPickerHost extends React.Component<IP
               return (
                 <div style={{ marginBottom: '5px' }} className='ms-ChoiceField' key={`${this.props.key}-multiplelistpicker-${index}`}>
                   <Checkbox
+                    key={uniqueKey}
                     disabled={this.props.disabled}
                     label={item.text}
                     onChange={this.onChanged}
